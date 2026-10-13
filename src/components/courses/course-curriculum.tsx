@@ -111,11 +111,11 @@ export function CourseCurriculum({
                     forceMount
                     aria-hidden={!isOpen}
                     className={cn(
-                      "grid transition-[grid-template-rows] duration-300 ease-out motion-reduce:transition-none",
-                      isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
+                      "grid transition-[grid-template-rows,opacity] duration-300 ease-out motion-reduce:transition-none",
+                      isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
                     )}
                   >
-                    <div className="overflow-hidden">
+                    <div className="min-h-0 overflow-hidden">
                       <ul className="space-y-1.5 pt-3">
                         {section.lessons.map((lesson, lessonIndex) => (
                           <li
