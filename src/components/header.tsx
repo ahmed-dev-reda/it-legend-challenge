@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "@/components/theme-toggle";
 
@@ -16,14 +15,9 @@ export default function Header() {
         <Link
           href="/"
           aria-label="IT Legend — home"
-          className="flex items-center gap-2.5 rounded-xl"
+          className="text-[15px] font-bold tracking-tight text-foreground"
         >
-          <span className="flex size-9 items-center justify-center rounded-lg bg-transparent">
-            <GraduationCap className="size-5 " />
-          </span>
-          <span className="text-[15px] font-bold tracking-tight text-foreground">
-            IT Legend
-          </span>
+          IT Legend
         </Link>
 
         <div className="flex items-center gap-1.5">
