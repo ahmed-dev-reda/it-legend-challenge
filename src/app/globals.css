@@ -1,26 +1,125 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand palette */
+  --surface: #ffffff;
+  --background: #f5f5f5;
+  --primary: #303841;
+  --secondary: #2c2c2c;
+
+  /* shadcn/ui semantic tokens (derived from the brand palette) */
+  --foreground: #2c2c2c;
+
+  --card: var(--surface);
+  --card-foreground: var(--foreground);
+  --popover: var(--surface);
+  --popover-foreground: var(--foreground);
+
+  --primary-foreground: #f5f5f5;
+  --secondary-foreground: #f5f5f5;
+
+  --muted: rgb(44 44 44 / 6%);
+  --muted-foreground: rgb(44 44 44 / 70%);
+
+  --accent: rgb(48 56 65 / 8%);
+  --accent-foreground: #303841;
+
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+
+  --border: rgb(44 44 44 / 10%);
+  --input: rgb(44 44 44 / 15%);
+  --ring: #303841;
+
+  --radius: 0.75rem;
+}
+
+.dark {
+  --surface: #26282d;
+  --background: #1a1b1f;
+  --primary: #f5f5f5;
+  --secondary: #f5f5f5;
+
+  --foreground: #f5f5f5;
+
+  --card: var(--surface);
+  --card-foreground: var(--foreground);
+  --popover: var(--surface);
+  --popover-foreground: var(--foreground);
+
+  --primary-foreground: #2c2c2c;
+  --secondary-foreground: #2c2c2c;
+
+  --muted: rgb(245 245 245 / 6%);
+  --muted-foreground: rgb(245 245 245 / 70%);
+
+  --accent: rgb(245 245 245 / 8%);
+  --accent-foreground: #f5f5f5;
+
+  --destructive: #f87171;
+  --destructive-foreground: #2c2c2c;
+
+  --border: rgb(245 245 245 / 12%);
+  --input: rgb(245 245 245 / 15%);
+  --ring: #f5f5f5;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+
   --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-geist-sans);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background-color: var(--primary);
+  color: var(--surface);
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
 }
