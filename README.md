@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎓 IT Legend — Learn Web Development
 
-## Getting Started
+منصة كورسات لتعلم تطوير الويب من الصفر وحتى الأطر الحديثة، مبنية بـ **Next.js 16 (App Router)** مع **React 19** و **TypeScript** و **Tailwind CSS v4** ومكونات **shadcn/ui**.
 
-First, run the development server:
+## ✨ المميزات
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **كشف الكورسات** (`/`): هيرو + شبكة كاركات للكورسات مع صورة مصغّرة وشريط تقدّم وشارة الفئة.
+- **صفحة تفاصيل الكورس** (`/courses/[id]`):
+  - فيديو الكورس (YouTube iframe).
+  - معلومات الكورس والمدرّب وشارة النسبة.
+  - شريط تقدّم المستخدم.
+  - **أكورديون المنهج** (سكشنز/دروس) مع **أنيميشن سلس** عند الفتح والإغلاق (ارتفاع + fade) وتقليل الحركة مدعوم (`motion-reduce`).
+  - **التعليقات** (من JSONPlaceholder) لودينج بـ Suspense skeleton.
+- **الوضع الداكن/الفاتح 🌙**: مبدّل ثيم في الهيدر (next-themes) بيحفظ اختيارك.
+- **خطأ/حالة فارغة**: مكونات معالجة لكل الحالات.
+- **تصميم متجاوب** بالكامل.
+
+## 🤖 التقنيات والمكتبات (Tech Stack)
+
+| المكتبة | الاستخدام |
+|---|---|
+| **next** `16.4.0` | إطار العمل — App Router، API Routes، Rendering |
+| **react** / **react-dom** `19.3.0` | أساس المكونات |
+| **next-themes** `^0.4.6` | الثيم الداكن/الفاتح |
+| **tailwindcss** `^4` (+ **@tailwindcss/turbopack**) | التنسيق |
+| **@radix-ui/react-slot** | `asChild` في الـ Button |
+| **@radix-ui/react-avatar** | مكوّن الصور الرمزية (Avatar) |
+| **@radix-ui/react-collapsible** | أكورديون المنهج |
+| **@radix-ui/react-progress** | شريط التقدّم |
+| **@radix-ui/react-separator** | الخطوط الفاصلة |
+| **class-variance-authority** | فاريانتات الـ Button |
+| **lucide-react** | الأيقونات |
+| **clsx** + **tailwind-merge** | دالة `cn()` لدمج الكلاسات |
+| **typescript** `^5` + **@types/\*** | الأنواع |
+| **eslint** `^9` + **eslint-config-next** | الـ Lint |
+
+> تمت إزالة `tw-animate-css` لأنه لم يكن مستخدمًا (لا توجد أي `animate-*` utilities).
+
+## 🎨 لوحة الألوان (Design System)
+
+نظام صارم من **3 ألوان فقط** + الأبيض، بدون ألوان عشوائية (عدا الحالات الدلالية فقط):
+
+| الدور | اللون |
+|---|---|
+| الخلفية `--background` | `#F5F5F5` |
+| الأساسي `--primary` | `#303841` |
+| الثانوي `--secondary` | `#2C2C2C` |
+| الكروت `--surface` | `#FFFFFF` |
+
+- كل الألوان معرفة كـ **CSS variables** + **shadcn tokens** في `src/app/globals.css`، وبتتكرر في تكوين Tailwind (`@theme inline`).
+- **الوضع الداكن**: `.dark` يقلب نفس العائلة (سطح `#26282d`، خلفية `#1a1b1f`، نصوص فاتحة `#f5f5f5`).
+- الحالات الدلالية فقط (أخضر للإكمال، أحمر للخطأ) لها ألوان مسموحة + فاريانت داكن.
+
+## 📁 هيكل المشروع
+
+```
+src/
+├── app/
+│   ├── api/courses/route.ts        # API داخلية للكورسات
+│   ├── courses/[id]/               # تفاصيل الكورس (page, loading, not-found)
+│   ├── courses/page.tsx            # صفحة الكورسات
+│   ├── layout.tsx                  # ThemeProvider + Header + fonts
+│   ├── page.tsx                    # الصفحة الرئيسية (catalog)
+│   └── globals.css                 # tokens + dark mode
+├── components/
+│   ├── ui/                         # مكونات shadcn (button, card, avatar, …)
+│   ├── home/                       # مكونات الصفحة الرئيسية
+│   ├── courses/                    # مكونات صفحة التفاصيل
+│   └── (avatar, header, theme-*, error-state)  # مشتركة
+├── lib/                            # courses, comments, format, utils
+└── types/data.ts                   # الداتا والأنواع
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> القاعدة: **مكوّن واحد في ملف واحد** (`one component per file`).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 التشغيل
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install      # تثبيت المكتبات
+npm run dev      # تطوير على http://localhost:3000
+npm run build    # بناء الإنتاج
+npm start        # تشغيل البناء على http://localhost:3000
+npm run lint     # فحص الكود
+```
 
-## Learn More
+- التطبيق يعمل على المنفذ **3000** (مشروع آخر، cv-builder، على 3001).
 
-To learn more about Next.js, take a look at the following resources:
+## 🔌 البيانات
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- الكورسات: أكواد ثابتة في `src/types/data.ts` + API داخلية `GET /api/courses` (تقدم نفس الداتا).
+- الصفحات بتجيب داتا من الـ API بتاعها عبر `NEXT_PUBLIC_API_URL` (افتراضي `http://localhost:3000`) مع `export const dynamic = "force-dynamic"` لضمان بيانات حديثة.
+- التعليقات: `JSONPlaceholder` (آخر 3 تعليقات).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📜 السكريبتات
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| الأمر | الوظيفة |
+|---|---|
+| `npm run dev` | خادم التطوير |
+| `npm run build` | بناء إنتاجي |
+| `npm start` | تشغيل البناء |
+| `npm run lint` | فحص ESLint |
