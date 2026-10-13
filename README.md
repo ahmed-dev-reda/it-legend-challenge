@@ -19,6 +19,22 @@
 - shadcn/ui components built on Radix UI primitives
 - next-themes and lucide-react
 
+## Environment Variables
+
+Optional. The server uses this base URL to call the app's own `/api/courses` endpoint.
+
+| Variable | Description | Required | Default |
+| --- | --- | --- | --- |
+| `NEXT_PUBLIC_API_URL` | Base URL for the app's `/api/courses` API | No | `http://localhost:3000` |
+
+To override it, create a `.env.local` file:
+
+```bash
+NEXT_PUBLIC_API_URL=http://localhost:3000
+```
+
+There are no secret values; this is the only environment variable used.
+
 ## Getting Started
 
 Requires Node.js (a version supported by Next.js 16) and npm.
