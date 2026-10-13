@@ -1,12 +1,13 @@
 import CourseList from "@/components/home/course-list";
 import ErrorState from "@/components/error-state";
 import HomeHero from "@/components/home/home-hero";
-import { getCourses } from "@/lib/courses";
+import { courses } from "@/lib/courses";
+
 
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const courses = await getCourses();
+
 
   if (courses === null) {
     return (

@@ -9,13 +9,14 @@ import CourseProgress from "@/components/home/course-progress";
 import CourseVideo from "@/components/courses/course-video";
 import { CourseCurriculum } from "@/components/courses/course-curriculum";
 import ErrorState from "@/components/error-state";
-import { getCourses } from "@/lib/courses";
+
 import {
   categories,
   courseCurriculum,
   courseProgress,
   instructors,
 } from "@/types/data";
+import { courses } from "@/lib/courses";
 
 export const dynamic = "force-dynamic";
 
@@ -25,7 +26,6 @@ export default async function CoursePage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const courses = await getCourses();
 
   if (courses === null) {
     return (
