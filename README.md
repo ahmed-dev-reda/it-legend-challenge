@@ -1,101 +1,101 @@
 # 🎓 IT Legend — Learn Web Development
 
-منصة كورسات لتعلم تطوير الويب من الصفر وحتى الأطر الحديثة، مبنية بـ **Next.js 16 (App Router)** مع **React 19** و **TypeScript** و **Tailwind CSS v4** ومكونات **shadcn/ui**.
+A courses platform for learning web development from the ground up to modern frameworks, built with **Next.js 16 (App Router)**, **React 19**, **TypeScript**, **Tailwind CSS v4**, and **shadcn/ui** components.
 
-## ✨ المميزات
+## ✨ Features
 
-- **كشف الكورسات** (`/`): هيرو + شبكة كاركات للكورسات مع صورة مصغّرة وشريط تقدّم وشارة الفئة.
-- **صفحة تفاصيل الكورس** (`/courses/[id]`):
-  - فيديو الكورس (YouTube iframe).
-  - معلومات الكورس والمدرّب وشارة النسبة.
-  - شريط تقدّم المستخدم.
-  - **أكورديون المنهج** (سكشنز/دروس) مع **أنيميشن سلس** عند الفتح والإغلاق (ارتفاع + fade) وتقليل الحركة مدعوم (`motion-reduce`).
-  - **التعليقات** (من JSONPlaceholder) لودينج بـ Suspense skeleton.
-- **الوضع الداكن/الفاتح 🌙**: مبدّل ثيم في الهيدر (next-themes) بيحفظ اختيارك.
-- **خطأ/حالة فارغة**: مكونات معالجة لكل الحالات.
-- **تصميم متجاوب** بالكامل.
+- **Course catalog** (`/`): a hero plus a grid of course cards with thumbnail, progress bar, and category badge.
+- **Course detail page** (`/courses/[id]`):
+  - Course video (YouTube iframe).
+  - Course, instructor, and rating-badge info.
+  - User progress bar.
+  - **Curriculum accordion** (sections/lessons) with a **smooth open/close animation** (height + fade), with `motion-reduce` support.
+  - **Comments** (from JSONPlaceholder) with a Suspense skeleton loading state.
+- **Dark / light mode 🌙**: a theme toggle in the header (next-themes) that remembers your choice.
+- **Error / empty states**: dedicated components for every state.
+- **Fully responsive** design.
 
-## 🤖 التقنيات والمكتبات (Tech Stack)
+## 🤖 Tech Stack & Libraries
 
-| المكتبة | الاستخدام |
+| Library | Purpose |
 |---|---|
-| **next** `16.4.0` | إطار العمل — App Router، API Routes، Rendering |
-| **react** / **react-dom** `19.3.0` | أساس المكونات |
-| **next-themes** `^0.4.6` | الثيم الداكن/الفاتح |
-| **tailwindcss** `^4` (+ **@tailwindcss/turbopack**) | التنسيق |
-| **@radix-ui/react-slot** | `asChild` في الـ Button |
-| **@radix-ui/react-avatar** | مكوّن الصور الرمزية (Avatar) |
-| **@radix-ui/react-collapsible** | أكورديون المنهج |
-| **@radix-ui/react-progress** | شريط التقدّم |
-| **@radix-ui/react-separator** | الخطوط الفاصلة |
-| **class-variance-authority** | فاريانتات الـ Button |
-| **lucide-react** | الأيقونات |
-| **clsx** + **tailwind-merge** | دالة `cn()` لدمج الكلاسات |
-| **typescript** `^5` + **@types/\*** | الأنواع |
-| **eslint** `^9` + **eslint-config-next** | الـ Lint |
+| **next** `16.4.0` | Framework — App Router, API Routes, rendering |
+| **react** / **react-dom** `19.3.0` | Component foundation |
+| **next-themes** `^0.4.6` | Dark / light theme |
+| **tailwindcss** `^4` (+ **@tailwindcss/turbopack**) | Styling |
+| **@radix-ui/react-slot** | `asChild` on the Button |
+| **@radix-ui/react-avatar** | Avatar component |
+| **@radix-ui/react-collapsible** | Curriculum accordion |
+| **@radix-ui/react-progress** | Progress bar |
+| **@radix-ui/react-separator** | Divider lines |
+| **class-variance-authority** | Button variants |
+| **lucide-react** | Icons |
+| **clsx** + **tailwind-merge** | `cn()` helper for merging classes |
+| **typescript** `^5` + **@types/\*** | Types |
+| **eslint** `^9` + **eslint-config-next** | Linting |
 
-> تمت إزالة `tw-animate-css` لأنه لم يكن مستخدمًا (لا توجد أي `animate-*` utilities).
+> `tw-animate-css` was removed because it was unused (no `animate-*` utilities are used).
 
-## 🎨 لوحة الألوان (Design System)
+## 🎨 Design System (Color Palette)
 
-نظام صارم من **3 ألوان فقط** + الأبيض، بدون ألوان عشوائية (عدا الحالات الدلالية فقط):
+A strict system of **only 3 colors** plus white, with no random colors (except semantic states):
 
-| الدور | اللون |
+| Role | Color |
 |---|---|
-| الخلفية `--background` | `#F5F5F5` |
-| الأساسي `--primary` | `#303841` |
-| الثانوي `--secondary` | `#2C2C2C` |
-| الكروت `--surface` | `#FFFFFF` |
+| Background `--background` | `#F5F5F5` |
+| Primary `--primary` | `#303841` |
+| Secondary `--secondary` | `#2C2C2C` |
+| Cards `--surface` | `#FFFFFF` |
 
-- كل الألوان معرفة كـ **CSS variables** + **shadcn tokens** في `src/app/globals.css`، وبتتكرر في تكوين Tailwind (`@theme inline`).
-- **الوضع الداكن**: `.dark` يقلب نفس العائلة (سطح `#26282d`، خلفية `#1a1b1f`، نصوص فاتحة `#f5f5f5`).
-- الحالات الدلالية فقط (أخضر للإكمال، أحمر للخطأ) لها ألوان مسموحة + فاريانت داكن.
+- All colors are defined as **CSS variables** + **shadcn tokens** in `src/app/globals.css`, and mirrored into the Tailwind theme (`@theme inline`).
+- **Dark mode**: `.dark` inverts the same family (surface `#26282d`, background `#1a1b1f`, light text `#f5f5f5`).
+- Only semantic states (green for completed, red for errors) have allowed colors, plus a dark variant.
 
-## 📁 هيكل المشروع
+## 📁 Project Structure
 
 ```
 src/
 ├── app/
-│   ├── api/courses/route.ts        # API داخلية للكورسات
-│   ├── courses/[id]/               # تفاصيل الكورس (page, loading, not-found)
-│   ├── courses/page.tsx            # صفحة الكورسات
+│   ├── api/courses/route.ts        # Internal courses API
+│   ├── courses/[id]/               # Course detail (page, loading, not-found)
+│   ├── courses/page.tsx            # Courses page
 │   ├── layout.tsx                  # ThemeProvider + Header + fonts
-│   ├── page.tsx                    # الصفحة الرئيسية (catalog)
+│   ├── page.tsx                    # Home page (catalog)
 │   └── globals.css                 # tokens + dark mode
 ├── components/
-│   ├── ui/                         # مكونات shadcn (button, card, avatar, …)
-│   ├── home/                       # مكونات الصفحة الرئيسية
-│   ├── courses/                    # مكونات صفحة التفاصيل
-│   └── (avatar, header, theme-*, error-state)  # مشتركة
+│   ├── ui/                         # shadcn components (button, card, avatar, …)
+│   ├── home/                       # Home page components
+│   ├── courses/                    # Detail page components
+│   └── (avatar, header, theme-*, error-state)  # Shared
 ├── lib/                            # courses, comments, format, utils
-└── types/data.ts                   # الداتا والأنواع
+└── types/data.ts                   # Data and types
 ```
 
-> القاعدة: **مكوّن واحد في ملف واحد** (`one component per file`).
+> Rule: **one component per file**.
 
-## 🚀 التشغيل
+## 🚀 Getting Started
 
 ```bash
-npm install      # تثبيت المكتبات
-npm run dev      # تطوير على http://localhost:3000
-npm run build    # بناء الإنتاج
-npm start        # تشغيل البناء على http://localhost:3000
-npm run lint     # فحص الكود
+npm install      # Install dependencies
+npm run dev      # Develop on http://localhost:3000
+npm run build    # Production build
+npm start        # Run the build on http://localhost:3000
+npm run lint     # Lint the code
 ```
 
-- التطبيق يعمل على المنفذ **3000** (مشروع آخر، cv-builder، على 3001).
+- The app runs on port **3000** (another project, cv-builder, runs on 3001).
 
-## 🔌 البيانات
+## 🔌 Data
 
-- الكورسات: أكواد ثابتة في `src/types/data.ts` + API داخلية `GET /api/courses` (تقدم نفس الداتا).
-- الصفحات بتجيب داتا من الـ API بتاعها عبر `NEXT_PUBLIC_API_URL` (افتراضي `http://localhost:3000`) مع `export const dynamic = "force-dynamic"` لضمان بيانات حديثة.
-- التعليقات: `JSONPlaceholder` (آخر 3 تعليقات).
+- Courses: static data in `src/types/data.ts` plus an internal API `GET /api/courses` (serving the same data).
+- Pages fetch data from their own API via `NEXT_PUBLIC_API_URL` (default `http://localhost:3000`) with `export const dynamic = "force-dynamic"` to guarantee fresh data.
+- Comments: `JSONPlaceholder` (the latest 3 comments).
 
-## 📜 السكريبتات
+## 📜 Scripts
 
-| الأمر | الوظيفة |
+| Command | Purpose |
 |---|---|
-| `npm run dev` | خادم التطوير |
-| `npm run build` | بناء إنتاجي |
-| `npm start` | تشغيل البناء |
-| `npm run lint` | فحص ESLint |
+| `npm run dev` | Development server |
+| `npm run build` | Production build |
+| `npm start` | Run the build |
+| `npm run lint` | ESLint check |
