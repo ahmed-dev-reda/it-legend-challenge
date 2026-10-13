@@ -1,6 +1,6 @@
-# IT Legend
+# IT Legend Challenge
 
-**IT Legend** is a course catalog web app for learning modern web development. It lets visitors browse a curated set of courses, open a detail page with an embedded video, curriculum, progress, and comments, and switch between light and dark themes. It solves the problem of a fragmented learning experience by bringing course discovery, content, and progress together in one clean, fast interface.
+**IT Legend Challenge** is a course catalog web app for learning modern web development. It lets visitors browse a curated set of courses, open a detail page with an embedded video, curriculum, progress, and comments, and switch between light and dark themes. It solves the problem of a fragmented learning experience by bringing course discovery, content, and progress together in one clean, fast interface.
 
 ## Key Features
 
