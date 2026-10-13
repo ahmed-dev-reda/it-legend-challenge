@@ -30,7 +30,7 @@ export default function CourseCard({
     <Card
       className={cn(
         "group min-w-0 gap-0 overflow-hidden rounded-2xl border-border py-0",
-        "transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-secondary/10",
+        "transition duration-300 hover:-translate-y-1",
       )}
     >
       <Link
@@ -38,8 +38,6 @@ export default function CourseCard({
         className="relative block aspect-[16/9] overflow-hidden bg-secondary/5"
       >
         <CourseImage src={course.video_thumbnail} alt={course.title} />
-
-        <div className="absolute inset-0 bg-secondary/0 transition duration-300 group-hover:bg-secondary/10" />
 
         <Badge className="absolute left-4 top-4 rounded-lg bg-primary px-3 py-1.5 text-xs font-bold text-primary-foreground shadow-sm">
           {categories[course.id] ?? "Development"}
